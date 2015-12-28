@@ -10,8 +10,10 @@ public class StackTrace {
 		new Throwable().printStackTrace(new PrintWriter(sw));
 		String stackTrace = sw.toString();
 		String[] split = stackTrace.split("\n");
+		String packageName = new Object() {
+		}.getClass().getPackage().getName();
 		for (int i = 0; i < split.length; i++) {
-			if (split[i].contains("com.till.StackTrace.methodName")) {
+			if (split[i].contains(packageName + ".StackTrace.methodName")) {
 				return split[i + 1].replace("at ", "").trim();
 			}
 		}
@@ -30,5 +32,4 @@ public class StackTrace {
 
 		// System.out.println(s);
 	}
-
 }
